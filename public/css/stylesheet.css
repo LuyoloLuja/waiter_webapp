@@ -1,0 +1,38 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    box-sizing: border-box;
+    height: 100vh;
+    overflow: hidden;
+}
+.container {
+    border: 1px solid red;
+    width: 80%;
+    height: 100%;
+    margin-left: auto;
+    margin-right: auto;
+}
+form {
+    border: 1px solid blue;
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+}
+.content {
+    border: 1px solid yellow;
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+}
+.content h1 {
+    font-size: 50px;
+    font-weight: lighter;
+    text-align: center;
+}
+table {
+    border: 1px solid black;
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+}
