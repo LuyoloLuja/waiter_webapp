@@ -1,38 +1,89 @@
+/* 
+    NAVY BLUE -- #293745
+    GREEN -- #6BD694
+    LIGHT BLUE -- #2F9ED0
+    YELLOW -- FDCE4B
+*/
 body, html {
     margin: 0;
     padding: 0;
     font-family: Arial, Helvetica, sans-serif;
+    color: #fff;
     box-sizing: border-box;
     height: 100vh;
     overflow: hidden;
 }
 .container {
-    border: 1px solid red;
     width: 80%;
     height: 100%;
     margin-left: auto;
     margin-right: auto;
 }
 form {
-    border: 1px solid blue;
     width: 80%;
-    margin-left: auto;
-    margin-right: auto;
+    height: 100%;
+    margin: 5em auto;
 }
 .content {
-    border: 1px solid yellow;
+    background-color: #293745;
+    padding: 10px;
     width: 80%;
-    margin-left: auto;
-    margin-right: auto;
+    height: 80%;
+    margin: 0 auto;
 }
 .content h1 {
-    font-size: 50px;
+    font-size: 56px;
     font-weight: lighter;
     text-align: center;
 }
-table {
-    border: 1px solid black;
+.content label {
     width: 80%;
-    margin-left: auto;
-    margin-right: auto;
+    margin: 0 auto;
+    display: block;
+}
+label input {
+    width: 50%;
+    margin: 8em auto 2em auto;
+    display: block;
+    padding: 6px;
+    border-radius: 4px;
+    border: none;
+    outline: none;
+}
+table {
+    border-collapse: collapse;
+    width: 80%;
+    margin: 0 auto;
+}
+table tr td {
+    border-bottom: 1px solid #fff;
+    padding: 20px;
+}
+table button {
+    width: 65%;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    background-color: #2F9ED0;
+    color: #293745;
+    cursor: pointer;
+}
+table button:hover {
+    border: 1px solid #fff;
+}
+table a {
+    text-decoration: none;
+    padding: 10px 2.5em;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    background-color: #2F9ED0;
+    color: #293745;
+}
+table a:hover {
+    border: 1px solid #fff;
+}
+table input {
+    cursor: pointer;
 }

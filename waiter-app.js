@@ -1,3 +1,3 @@
-module.exports = function WaiterApp(){
-    
+module.exports = function WaiterApp(pool){
+
 }
