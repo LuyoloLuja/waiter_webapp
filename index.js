@@ -1,6 +1,20 @@
 let express = require('express');
 let app = express();
+const pg = require('pg');
+const bodyParser = require('body-parser')
 const exphbs = require('express-handlebars');
+const WaiterAvailability = require('./waiter-app');
+
+const Pool = pg.Pool;
+const connectionString = process.env.DATABASE_URL || 'postgresql://codex:codex123@localhost:5432/waiter_app';
+const pool = new Pool({
+  connectionString
+});
+
+const waiterInstance = WaiterAvailability(pool);
+
+app.use(express.static('public'));
+app.use(bodyParser.urlencoded({ extended: false }))
 
 // configure handlebars
 app.engine('handlebars', exphbs({defaultLayout: 'main'}));

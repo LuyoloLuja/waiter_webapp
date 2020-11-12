@@ -12,22 +12,21 @@
         <form action="GET">
             <label for="">Name</label>
             <input type="text" name="name">
-            <button type="submit" name="addBtn">Add</button>
 
-            <div class="working-days">
-                <div class="first">
-                    <input type="checkbox" name="monday" value="Monday">Monday</input>
-                    <input type="checkbox" name="tuesday" value="tuesday">Tuesday</input>
-                    <input type="checkbox" name="wednesday" value="wednesday">Wednesday</input>
-                    <input type="checkbox" name="thursday" value="thursday">thursday</input>
-                </div>
-
-                <div class="second">
-                    <input type="checkbox" name="friday" value="friday">Friday</input>
-                    <input type="checkbox" name="saturday" value="saturday">Saturday</input>
-                    <input type="checkbox" name="sunday" value="sunday">Sunday</input>
-                </div>
-            </div>
+            <table>
+                <tr>
+                    <td><input type="checkbox" name="monday" value="Monday">Monday</input></td>
+                    <td><input type="checkbox" name="tuesday" value="tuesday">Tuesday</input></td>
+                    <td><input type="checkbox" name="wednesday" value="wednesday">Wednesday</input></td>
+                    <td><input type="checkbox" name="thursday" value="thursday">thursday</input></td>
+                </tr>
+                <tr>
+                    <td><input type="checkbox" name="friday" value="friday">Friday</input></td>
+                    <td><input type="checkbox" name="saturday" value="saturday">Saturday</input></td>
+                    <td><input type="checkbox" name="sunday" value="sunday">Sunday</input></td>
+                    <td><button type="submit" name="addBtn">Submit</button></td>
+                </tr>
+            </table>
         </form>
     </div>
 </body>
