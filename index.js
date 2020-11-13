@@ -11,7 +11,7 @@ const pool = new Pool({
   connectionString
 });
 
-const waiterInstance = WaiterAvailability(pool);
+const waiterAppInstance = WaiterAvailability(pool);
 
 app.use(express.static('public'));
 app.use(bodyParser.urlencoded({ extended: false }))

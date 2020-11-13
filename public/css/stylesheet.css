@@ -11,7 +11,8 @@ body, html {
     color: #fff;
     box-sizing: border-box;
     height: 100vh;
-    overflow: hidden;
+    /* overflow: hidden; */
+    background-attachment: fixed;
 }
 .container {
     width: 80%;
@@ -26,6 +27,7 @@ form {
 }
 .content {
     background-color: #293745;
+    border-radius: 10px;
     padding: 15px;
     width: 80%;
     height: 80%;
@@ -60,7 +62,8 @@ table tr td {
     padding: 20px;
 }
 table button {
-    width: 65%;
+    width: 100%;
+    /* width: 65%; */
     padding: 10px;
     border: none;
     border-radius: 5px;
@@ -71,6 +74,9 @@ table button {
 }
 table button:hover {
     border: 1px solid #fff;
+    /* border: 1px solid #FDCE4B;
+    background-color: #293745;
+    color: #FDCE4B; */
 }
 table a {
     text-decoration: none;
