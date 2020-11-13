@@ -24,6 +24,14 @@ app.get('/', function(req, res){
     res.render('home');
 })
 
+app.get('/waiters/:username', async function(req, res){
+  let user = req.params.username;
+  let days = req.body.day;
+
+  
+
+})
+
 let PORT = process.env.PORT || 3032;
 
 app.listen(PORT, function(){
