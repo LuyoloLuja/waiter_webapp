@@ -17,23 +17,39 @@ app.use(express.static('public'));
 app.use(bodyParser.urlencoded({ extended: false }))
 
 // configure handlebars
-app.engine('handlebars', exphbs({defaultLayout: 'main'}));
+app.engine('handlebars', exphbs({ defaultLayout: 'main' }));
 app.set('view engine', 'handlebars');
 
-app.get('/', function(req, res){
-    res.render('home');
+app.get('/', function (req, res) {
+  res.render('home');
 })
 
-app.get('/waiters/:username', async function(req, res){
-  let user = req.params.username;
+app.post('/waiters/:username', async function (req, res) {
+  let name = req.body.name;
   let days = req.body.day;
+ console.log(name);
+  await waiterAppInstance.addWaiterInfo(name, days);
 
-  
+  let userDetails = await waiterAppInstance.storedDetails()
 
+  res.render(`/waiters'/${username}`, {
+    waiter_name: userDetails,
+    days_working: userDetails
+  })
 })
+
+app.get('/waiters/:username', async function (req, res) {
+  let userDetails = await waiterAppInstance.storedDetails();
+
+  res.render(`/waiters'/${username}`, {
+    waiter_name: userDetails,
+    days_working: userDetails
+  })
+
+});
 
 let PORT = process.env.PORT || 3032;
 
-app.listen(PORT, function(){
-    console.log('APP STARTED ON PORT', PORT);
+app.listen(PORT, function () {
+  console.log('APP STARTED ON PORT', PORT);
 })

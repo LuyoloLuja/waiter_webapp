@@ -9,7 +9,7 @@
 
 <body>
     <div class="container">
-        <form action="GET">
+        <form action="/waiters/:username" method="POST">
             <div class="content">
                 <h1>Waiter Availability</h1>
                 <label for=""><input type="text" name="name" placeholder="Please Enter Your Name"></label>
@@ -33,6 +33,9 @@
                 </table>
             </div>
         </form>
+        <div class="message">
+            {{successMessage}}
+        </div>
     </div>
 </body>
 
