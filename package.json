@@ -4,7 +4,7 @@
   "main": "index.js",
   "scripts": {
     "test": "mocha",
-    "stat": "node index.js"
+    "start": "node index.js"
   },
   "keywords": [],
   "author": "",
