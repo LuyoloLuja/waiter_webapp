@@ -17,7 +17,6 @@ INSERT INTO days_of_work (day_working) VALUES ('Sunday');
 
 CREATE TABLE working_days (
     id SERIAL NOT NULL PRIMARY KEY,
-    shift TEXT NOT NULL,
     waiter_name INT NOT NULL,
     FOREIGN KEY (waiter_name) REFERENCES waiter_names(id),
     days_working INT NOT NULL,
