@@ -19,6 +19,6 @@ CREATE TABLE working_days (
     id SERIAL NOT NULL PRIMARY KEY,
     waiter_name INT NOT NULL,
     FOREIGN KEY (waiter_name) REFERENCES waiter_names(id),
-    days_working INT NOT NULL,
+    days_working INT,
     FOREIGN KEY (days_working) REFERENCES days_of_work(id)
 );
