@@ -80,11 +80,11 @@ table button:hover {
 }
 table a {
     text-decoration: none;
-    padding: 10px 2.5em;
+    padding: 11px 2.5em;
     border: none;
     border-radius: 5px;
     font-size: 16px;
-    background-color: #FDCE4B;
+    background-color: #2F9ED0;
     color: #293745;
 }
 table a:hover {
