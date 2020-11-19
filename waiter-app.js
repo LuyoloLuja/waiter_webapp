@@ -27,9 +27,8 @@ module.exports = function WaiterApp(pool) {
     }
 
     async function getDaysId(days) {
-            var daysId = await pool.query('SELECT id FROM days_of_work WHERE day_working = $1', [days]);
-            return daysId.rows[0].id;
-            // console.log(daysId.rows[0].id);
+        var daysId = await pool.query('SELECT id FROM days_of_work WHERE day_working = $1', [days]);
+        return daysId.rows[0].id;
     }
 
     async function getDays() {
