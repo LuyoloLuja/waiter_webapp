@@ -17,8 +17,11 @@ INSERT INTO days_of_work (day_working) VALUES ('Sunday');
 
 CREATE TABLE working_days (
     id SERIAL NOT NULL PRIMARY KEY,
-    waiter_name INT NOT NULL,
-    FOREIGN KEY (waiter_name) REFERENCES waiter_names(id),
+    waiter_id INT NOT NULL,
+    FOREIGN KEY (waiter_id) REFERENCES waiter_names(id),
     days_working INT,
     FOREIGN KEY (days_working) REFERENCES days_of_work(id)
 );
+-- inner njoin
+-- SELECT waiter_names.waiter_name, days_of_work.day_working FROM working_days INNER JOIN days_of_work ON working_days.days_working  = days_of_work.id INNER JOIN waiter_names ON working_days.waiter_name = waiter_names.id;
+SELECT waiter_id, days_working FROM working_days JOIN waiter_names ON working_days.waiter_id = waiter_names.id JOIN days_of_work ON working_days.days_working = days_of_work.id;

@@ -33,31 +33,44 @@ app.get('/', async function (req, res) {
 
   res.render('home', {
     // day_working: days
-    working_days: await waiterAppInstance.storedDetails()
+    // working_days: await waiterAppInstance.storedDetails()
+  });
+})
+app.get('/waiters/:username', async function (req, res) {
+  let name = req.params.username;
+  res.render('home', {
+    username: name
   });
 })
 
 app.post('/waiters/:username', async function (req, res) {
-  // let name = req.params.username;
-  let name = req.body.name;
+  // TO DO : URL TO TAKE DYNAMIC NAMES
+  let name = req.params.username;
   let days = req.body.day;
+  console.log(name);
 
-  await waiterAppInstance.addWaiterInfo(name, days);
+  let waiterDetails = await waiterAppInstance.addWaiterInfo(name, days);
 
-  // if(!name && !days){
-  //   req.flash('successMessage', 'Please enter your details');
-  // }else{
-  //   req.flash('successMessage', 'Successfuly added on the database!');
-  //   // await waiterAppInstance.addWaiterInfo(name, days);
-  // }
+  if(waiterDetails){
+    req.flash('successMessage', 'Please enter your details');
+  }else{
+    req.flash('successMessage', 'Successfuly added on the database!');
+  }
 
-  res.render('home', {})
+  res.render('home', {
+    // TO DO : URL TO TAKE DYNAMIC NAMES
+    username: name,
+  })
 })
 
 app.get('/days', async function (req, res) {
+  let workingWaiters = await waiterAppInstance.getName();
+  // console.log(workingWaiters);
+  let daysWorking = await waiterAppInstance.getDays()
 
   res.render('shifts', {
-
+    waiter_name: workingWaiters,
+    day_working: daysWorking
   })
 })
 

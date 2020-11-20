@@ -9,7 +9,7 @@ module.exports = function WaiterApp(pool) {
 
                 let daysId = await getDaysId(eachDay);
 
-                await pool.query('INSERT INTO working_days (waiter_name, days_working) VALUES ($1, $2)', [namesId, daysId]);
+                await pool.query('INSERT INTO working_days (waiter_id, days_working) VALUES ($1, $2)', [namesId, daysId]);
             }
         }
     }
@@ -23,30 +23,41 @@ module.exports = function WaiterApp(pool) {
         }
 
         var namesId = await pool.query('SELECT id FROM waiter_names WHERE waiter_name = $1', [name]);
-        return namesId.rows[0].id;
+        return namesId.rows[0]['id'];
     }
 
     async function getDaysId(days) {
         var daysId = await pool.query('SELECT id FROM days_of_work WHERE day_working = $1', [days]);
-        // console.log(daysId.rows[0]['id']);
         return daysId.rows[0]['id'];
     }
 
     async function getDays() {
-        let days = await pool.query('SELECT * FROM days_of_work');
-        return days.rows;
+        let days = await pool.query('SELECT day_working FROM days_of_work');
+        console.log(days.rows);
+        // return days.rows;
     }
 
-    async function storedDetails() {
-        let waiterInfo = await pool.query('SELECT * FROM working_days');
-        return waiterInfo.rows;
+    async function getName(){
+        let names = await pool.query('SELECT waiter_name FROM waiter_names');
+        console.log(names.rows);
+        // return names.rows;
     }
+    // async function storedDetails() {
+    //     let waiterInfo = await pool.query('SELECT * FROM working_days');
+    //     return waiterInfo.rows;
+    // }
+
+    // async function joinTables(){
+    //     await pool.query(`SELECT waiter_name FROM waiter_names JOIN days_of_work ON waiter_names.id = days_of_work.id JOIN 
+    //                         working_days ON working_days = days_of_work.id`)
+    // }
 
     return {
         addWaiterInfo,
-        storedDetails,
+        // storedDetails,
         getDaysId,
         getNameId,
-        getDays
+        getDays,
+        getName
     }
 }
