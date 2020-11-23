@@ -22,6 +22,3 @@ CREATE TABLE working_days (
     days_working INT,
     FOREIGN KEY (days_working) REFERENCES days_of_work(id)
 );
--- inner njoin
--- SELECT waiter_names.waiter_name, days_of_work.day_working FROM working_days INNER JOIN days_of_work ON working_days.days_working  = days_of_work.id INNER JOIN waiter_names ON working_days.waiter_name = waiter_names.id;
-SELECT DISTINCT waiter_names.id AS waiter_id, waiter_name, working_days.id AS day_id, day_working FROM working_days JOIN waiter_names ON working_days.waiter_id = waiter_names.id JOIN days_of_work ON working_days.days_working = days_of_work.id;

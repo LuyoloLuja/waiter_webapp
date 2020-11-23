@@ -29,44 +29,51 @@ app.engine('handlebars', exphbs({ layoutsDir: './views/layouts/' }));
 app.set('view engine', 'handlebars');
 
 app.get('/', async function (req, res) {
-  // let days = waiterAppInstance.getDays();
-
-  res.render('home', {
-    // day_working: days
-    // working_days: await waiterAppInstance.storedDetails()
-  });
+  res.render('home');
 })
+
 app.get('/waiters/:username', async function (req, res) {
   let name = req.params.username;
+  name = name.toUpperCase().charAt(0) + name.slice(1);
+  let days = req.body.day
+
+  await waiterAppInstance.getDays();
+  let waiterDetails = await waiterAppInstance.addWaiterInfo(name, days);
+
   res.render('home', {
-    username: name
+    username: name,
+    day_working: days,
+    waiterDetails
   });
 })
 
 app.post('/waiters/:username', async function (req, res) {
-  // TO DO : URL TO TAKE DYNAMIC NAMES
   let name = req.params.username;
+  name = name.toUpperCase().charAt(0) + name.slice(1);
   let days = req.body.day;
-  console.log(name);
 
-  let waiterDetails = await waiterAppInstance.addWaiterInfo(name, days);
+  await waiterAppInstance.getDays();
+  var waiterDetails = await waiterAppInstance.addWaiterInfo(name, days);
 
-  if(waiterDetails){
+  if (!name && !days) {
     req.flash('successMessage', 'Please enter your details');
-  }else{
+  } else {
     req.flash('successMessage', 'Successfuly added on the database!');
+    // daysWorking;
+    waiterDetails
   }
-
+  
   res.render('home', {
-    // TO DO : URL TO TAKE DYNAMIC NAMES
     username: name,
+    days_working: days,
+    waiterDetails
   })
 })
 
 app.get('/days', async function (req, res) {
   let workingWaiters = await waiterAppInstance.getName();
   // console.log(workingWaiters);
-  let daysWorking = await waiterAppInstance.getDays()
+  let daysWorking = await waiterAppInstance.getDays();
 
   res.render('shifts', {
     waiter_name: workingWaiters,

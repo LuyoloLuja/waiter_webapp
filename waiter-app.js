@@ -1,17 +1,26 @@
 module.exports = function WaiterApp(pool) {
 
     async function addWaiterInfo(name, days) {
+        // try {
+        name = name.toUpperCase().charAt(0) + name.slice(1);
 
         if (name && days) {
             let namesId = await getNameId(name);
 
             for (const eachDay of days) {
 
+                // console.log({ eachDay, namesId });
+                // if (eachDay) {
                 let daysId = await getDaysId(eachDay);
 
                 await pool.query('INSERT INTO working_days (waiter_id, days_working) VALUES ($1, $2)', [namesId, daysId]);
+                // }
+
             }
         }
+        // } catch (error) {
+        //     console.log(error);
+        // }
     }
 
     async function getNameId(name) {
@@ -27,37 +36,49 @@ module.exports = function WaiterApp(pool) {
     }
 
     async function getDaysId(days) {
-        var daysId = await pool.query('SELECT id FROM days_of_work WHERE day_working = $1', [days]);
-        return daysId.rows[0]['id'];
+        try {
+            var daysId = await pool.query('SELECT id FROM days_of_work WHERE day_working = $1', [days]);
+            console.log(daysId.rows[0]['id']);
+            return daysId.rows[0]['id'];
+        } catch (error) {
+            return null;
+        }
     }
 
     async function getDays() {
-        let days = await pool.query('SELECT day_working FROM days_of_work');
-        console.log(days.rows);
-        // return days.rows;
+        let days = await pool.query('SELECT * FROM days_of_work');
+        // console.log(days.rows);
+        return days.rows;
     }
 
-    async function getName(){
+    async function getName() {
         let names = await pool.query('SELECT waiter_name FROM waiter_names');
-        console.log(names.rows);
-        // return names.rows;
+        // console.log(names.rows);
+        return names.rows;
     }
-    // async function storedDetails() {
-    //     let waiterInfo = await pool.query('SELECT * FROM working_days');
-    //     return waiterInfo.rows;
-    // }
 
-    // async function joinTables(){
-    //     await pool.query(`SELECT waiter_name FROM waiter_names JOIN days_of_work ON waiter_names.id = days_of_work.id JOIN 
-    //                         working_days ON working_days = days_of_work.id`)
-    // }
+    async function joinTables() {
+        let tableData = await pool.query(`SELECT DISTINCT waiter_names.id AS waiter_id, waiter_name, working_days.id AS 
+                                            day_id, day_working FROM working_days JOIN waiter_names ON 
+                                            working_days.waiter_id = waiter_names.id JOIN days_of_work ON 
+                                            working_days.days_working = days_of_work.id;`);
+        return tableData;
+    }
+
+    async function groupWaitersByDay() {
+        let waiterDays = joinTables();
+        let days = [];
+
+
+    }
 
     return {
         addWaiterInfo,
-        // storedDetails,
         getDaysId,
         getNameId,
         getDays,
-        getName
+        getName,
+        joinTables,
+        groupWaitersByDay
     }
 }
