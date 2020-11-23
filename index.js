@@ -70,9 +70,8 @@ app.post('/waiters/:username', async function (req, res) {
 })
 
 app.get('/days', async function (req, res) {
-  // await waiterAppInstance.joinTables();
   const data =  await waiterAppInstance.groupWaitersByDay();
-  console.log(data);
+  
   res.render('shifts', {
     data
   })

@@ -12,7 +12,8 @@
         <form action="/waiters/{{username}}" method="POST">
             <div class="content">
                 <h1>Waiter Availability</h1>
-                <label for=""><input type="text" name="name" placeholder="Please Enter Your Name" value="{{username}}"></label>
+                <label for=""><input type="text" name="name" placeholder="Please Enter Your Name"
+                        value="{{username}}"></label>
                 <div class="message">
                     {{successMessage}}
                 </div>
@@ -31,8 +32,8 @@
                     <tr>
                         <td><input type="checkbox" name="day" value="Sunday">Sunday</input></td>
                         <td colspan="2"><button type="submit" name="addBtn">Submit</button></td>
-                {{!-- <td><a href="/days">Admin</a></td> --}}
-                </tr>
+                        {{!-- <td><a href="/days">Admin</a></td> --}}
+                    </tr>
                 </table>
                 {{!-- <div>
                     {{#each day_working}}
