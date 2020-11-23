@@ -52,17 +52,16 @@ app.post('/waiters/:username', async function (req, res) {
   name = name.toUpperCase().charAt(0) + name.slice(1);
   let days = req.body.day;
 
-  await waiterAppInstance.getDays();
-  var waiterDetails = await waiterAppInstance.addWaiterInfo(name, days);
+  // await waiterAppInstance.getDays();
 
   if (!name && !days) {
     req.flash('successMessage', 'Please enter your details');
   } else {
     req.flash('successMessage', 'Successfuly added on the database!');
-    // daysWorking;
-    waiterDetails
+    // waiterDetails
+    var waiterDetails = await waiterAppInstance.addWaiterInfo(name, days);
   }
-  
+
   res.render('home', {
     username: name,
     days_working: days,
@@ -71,13 +70,11 @@ app.post('/waiters/:username', async function (req, res) {
 })
 
 app.get('/days', async function (req, res) {
-  let workingWaiters = await waiterAppInstance.getName();
-  // console.log(workingWaiters);
-  let daysWorking = await waiterAppInstance.getDays();
-
+  // await waiterAppInstance.joinTables();
+  const data =  await waiterAppInstance.groupWaitersByDay();
+  console.log(data);
   res.render('shifts', {
-    waiter_name: workingWaiters,
-    day_working: daysWorking
+    data
   })
 })
 

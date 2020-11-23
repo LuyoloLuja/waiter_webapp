@@ -1,7 +1,6 @@
 module.exports = function WaiterApp(pool) {
 
     async function addWaiterInfo(name, days) {
-        // try {
         name = name.toUpperCase().charAt(0) + name.slice(1);
 
         if (name && days) {
@@ -9,18 +8,11 @@ module.exports = function WaiterApp(pool) {
 
             for (const eachDay of days) {
 
-                // console.log({ eachDay, namesId });
-                // if (eachDay) {
                 let daysId = await getDaysId(eachDay);
-
                 await pool.query('INSERT INTO working_days (waiter_id, days_working) VALUES ($1, $2)', [namesId, daysId]);
-                // }
 
             }
         }
-        // } catch (error) {
-        //     console.log(error);
-        // }
     }
 
     async function getNameId(name) {
@@ -36,13 +28,9 @@ module.exports = function WaiterApp(pool) {
     }
 
     async function getDaysId(days) {
-        try {
-            var daysId = await pool.query('SELECT id FROM days_of_work WHERE day_working = $1', [days]);
-            console.log(daysId.rows[0]['id']);
-            return daysId.rows[0]['id'];
-        } catch (error) {
-            return null;
-        }
+        var daysId = await pool.query('SELECT id FROM days_of_work WHERE day_working = $1', [days]);
+
+        return daysId.rows[0]['id'];
     }
 
     async function getDays() {
@@ -53,7 +41,6 @@ module.exports = function WaiterApp(pool) {
 
     async function getName() {
         let names = await pool.query('SELECT waiter_name FROM waiter_names');
-        // console.log(names.rows);
         return names.rows;
     }
 
@@ -61,14 +48,36 @@ module.exports = function WaiterApp(pool) {
         let tableData = await pool.query(`SELECT DISTINCT waiter_names.id AS waiter_id, waiter_name, working_days.id AS 
                                             day_id, day_working FROM working_days JOIN waiter_names ON 
                                             working_days.waiter_id = waiter_names.id JOIN days_of_work ON 
-                                            working_days.days_working = days_of_work.id;`);
-        return tableData;
+                                            working_days.days_working = days_of_work.id`);
+        return tableData.rows;
     }
 
     async function groupWaitersByDay() {
-        let waiterDays = joinTables();
-        let days = [];
+        // days for admin
+        let waiterDays = await joinTables();
+        let dayOfTheWeek = await getDays();
 
+        let daysList = [];
+
+        for (let i = 0; i < dayOfTheWeek.length; i++) {
+            const eachDay = dayOfTheWeek[i];
+            let waiterInfo = {
+                shift: eachDay.day_working,
+                waiter: []
+            }
+            // console.log(daysList.push(waiterInfo));
+            daysList.push(waiterInfo);
+        }
+        
+        for (const list of daysList) {
+            for (const data of waiterDays) {
+                if(list.shift === data.day_working) {
+                    list.waiter.push(data.waiter_name)
+                }
+            }
+        }
+
+        return daysList;
 
     }
 
