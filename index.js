@@ -50,16 +50,15 @@ app.get('/waiters/:username', async function (req, res) {
 app.post('/waiters/:username', async function (req, res) {
   let name = req.params.username;
   name = name.toUpperCase().charAt(0) + name.slice(1);
+  
   let days = req.body.day;
 
-  // await waiterAppInstance.getDays();
+  var waiterDetails = await waiterAppInstance.addWaiterInfo(name, days);
 
   if (!name && !days) {
     req.flash('successMessage', 'Please enter your details');
   } else {
     req.flash('successMessage', 'Successfuly added on the database!');
-    // waiterDetails
-    var waiterDetails = await waiterAppInstance.addWaiterInfo(name, days);
   }
 
   res.render('home', {
@@ -70,10 +69,10 @@ app.post('/waiters/:username', async function (req, res) {
 })
 
 app.get('/days', async function (req, res) {
-  const data =  await waiterAppInstance.groupWaitersByDay();
+  const tableData =  await waiterAppInstance.groupWaitersByDay();
   
   res.render('shifts', {
-    data
+    tableData
   })
 })
 

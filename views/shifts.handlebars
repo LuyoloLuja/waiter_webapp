@@ -4,46 +4,111 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Shifts</title>
     <style>
         body,
         html {
             margin: 0;
             padding: 0;
             font-family: Arial, Helvetica, sans-serif;
-            color: #000;
+            color: #fff;
             box-sizing: border-box;
             height: 100vh;
-            background-attachment: fixed;
+            font-size: 18px;
+        }
+         .fit {
+            background-color: #293745;
+            width: 70%;
+            margin: 0 auto;
+            height: 100%;
         }
 
+        .fit h1 {
+            font-size: 56px;
+            font-weight: lighter;
+            text-align: center;
+        }
+
+        .daysContent {
+            width: 60%;
+            margin: 0em auto;
+            border: 1px solid #293745;
+        }
+
+        .colors {
+            float: right;
+            margin-bottom: 2em;
+        }
+
+        .colors .red,
+        .green,
+        .yellow {
+            width: 10px;
+            height: 10px;
+            background-color: #000;
+            display: inline-block;
+            border-radius: 50%;
+            margin-right: 5px;
+        }
         table {
-            width: 50%;
-            border: 1px solid #000;
+            width: 100%;
+            border-collapse: collapse;
+            margin: 0 auto;
         }
 
         tr,
         th,
         td {
-            border: 1px solid #000;
+            border-bottom: 1px solid #fff;
+            padding: 10px;
         }
+
+        th {
+            text-align: left;
+            border-right: 1px solid #fff;
+            width: 20%;
+        }
+        .red {
+            color: red;
+        }
+        .green {
+            color: green;
+        }
+        .yellow {
+            color: orange;
+        }
+
+       
     </style>
 </head>
 
 <body>
-    <table>
-        <tr>
-            {{#each data}}
-            {{!-- <td>{{this.shift}}</td> --}}
-            <th style="background: grey;">{{this.shift}}</th>
-        </tr>
+    <div class="fit">
+        <div class="daysContent">
+            <h1>Booked Shifts</h1>
+            <br><br><br>
+            <div class="colors">
+                <div>
+                    <div class="red" style="background-color: red;"></div>Fully Booked
+                </div>
+                <div>
+                    <div class="green" style="background-color: green;"></div>djkjlkjdlad
+                </div>
+                <div>
+                    <div class="yellow" style="background-color: orange;"></div>Yellow dsjdjs
+                </div>
+            </div>
 
-        <tr>
-            <td>{{this.waiter}}</td>
-        </tr>
-        {{/each}}
-
-    </table>
+            <table>
+                <tr>
+                    {{#each tableData}}
+                    <th>{{this.shift}}</th>
+                    <td>{{this.waiter}}</td>
+                </tr>
+                {{/each}}
+            </table>
+        </div>
+    </div>
 </body>
 
 </html>

@@ -53,7 +53,6 @@ module.exports = function WaiterApp(pool) {
     }
 
     async function groupWaitersByDay() {
-        // days for admin
         let waiterDays = await joinTables();
         let dayOfTheWeek = await getDays();
 
@@ -65,20 +64,27 @@ module.exports = function WaiterApp(pool) {
                 shift: eachDay.day_working,
                 waiter: []
             }
-            // console.log(daysList.push(waiterInfo));
             daysList.push(waiterInfo);
         }
-        
+
         for (const list of daysList) {
             for (const data of waiterDays) {
-                if(list.shift === data.day_working) {
-                    list.waiter.push(data.waiter_name)
+
+                if (list.shift === data.day_working) {
+                    list.waiter.push(data.waiter_name);
                 }
             }
         }
-
         return daysList;
+    }
 
+    // work on colors
+    async function colors(day) {
+        if (day.length < 3) {
+            return 'makeBooking';
+        } else if (day.length > 3) {
+            return 'fullyBooked'
+        }
     }
 
     return {
