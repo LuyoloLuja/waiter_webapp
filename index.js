@@ -56,9 +56,9 @@ app.post('/waiters/:username', async function (req, res) {
   var waiterDetails = await waiterAppInstance.addWaiterInfo(name, days);
 
   if (!name && !days) {
-    req.flash('successMessage', 'Please enter your details');
+    req.flash('error', 'Please enter your details');
   } else {
-    req.flash('successMessage', 'Successfuly added on the database!');
+    req.flash('message', 'Shift successfuly added!');
   }
 
   res.render('home', {
@@ -70,9 +70,14 @@ app.post('/waiters/:username', async function (req, res) {
 
 app.get('/days', async function (req, res) {
   const tableData =  await waiterAppInstance.groupWaitersByDay();
+  let shifts = Object.keys(tableData)
+  // console.log(shifts);
+
+  const colors = await waiterAppInstance.colors(shifts);
   
   res.render('shifts', {
-    tableData
+    tableData,
+    colors
   })
 })
 

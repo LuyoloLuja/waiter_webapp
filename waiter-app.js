@@ -81,9 +81,11 @@ module.exports = function WaiterApp(pool) {
     // work on colors
     async function colors(day) {
         if (day.length < 3) {
-            return 'makeBooking';
+            return 'yellow';
         } else if (day.length > 3) {
-            return 'fullyBooked'
+            return 'red';
+        } else if (day.length === 3){
+            return 'green';
         }
     }
 
@@ -94,6 +96,7 @@ module.exports = function WaiterApp(pool) {
         getDays,
         getName,
         joinTables,
-        groupWaitersByDay
+        groupWaitersByDay,
+        colors
     }
 }

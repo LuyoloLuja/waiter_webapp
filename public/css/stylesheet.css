@@ -89,3 +89,12 @@ label input {
 .container table input {
     cursor: pointer;
 }
+.message {
+    font-size: 20px;
+    color: #62C274;
+    width: fit-content;
+    border: 1px solid #62C274;
+    margin: 0 auto;
+    padding: 5px 30px ;
+    border-radius: 5px;
+}

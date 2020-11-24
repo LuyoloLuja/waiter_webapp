@@ -14,10 +14,6 @@
                 <h1>Waiter Availability</h1>
                 <label for=""><input type="text" name="name" placeholder="Please Enter Your Name"
                         value="{{username}}"></label>
-                <div class="message">
-                    {{successMessage}}
-                </div>
-
                 <table>
                     <tr>
                         <td><input type="checkbox" name="day" value="Monday">Monday</input></td>
@@ -35,6 +31,19 @@
                         {{!-- <td><a href="/days">Admin</a></td> --}}
                     </tr>
                 </table>
+                <br><br><br>
+                {{#if messages.message}}
+                <div class="message">
+                    {{messages.message}}
+                </div>
+                {{/if}}
+
+                {{#if messages.error}}
+                <div class="error">
+                    {{messages.error}}
+                </div>
+                {{/if}}
+
 
             </div>
         </form>

@@ -16,7 +16,8 @@
             height: 100vh;
             font-size: 18px;
         }
-         .fit {
+
+        .fit {
             background-color: #293745;
             width: 70%;
             margin: 0 auto;
@@ -50,6 +51,7 @@
             border-radius: 50%;
             margin-right: 5px;
         }
+
         table {
             width: 100%;
             border-collapse: collapse;
@@ -68,17 +70,18 @@
             border-right: 1px solid #fff;
             width: 20%;
         }
+
         .red {
-            color: red;
-        }
-        .green {
-            color: green;
-        }
-        .yellow {
-            color: orange;
+            background-color: red;
         }
 
-       
+        .green {
+            background-color: green;
+        }
+
+        .yellow {
+            background-color: #FDCE4B;
+        }
     </style>
 </head>
 
@@ -89,20 +92,20 @@
             <br><br><br>
             <div class="colors">
                 <div>
-                    <div class="red" style="background-color: red;"></div>Fully Booked
+                    <div class="yellow" style="background-color: #FDCE4B;"></div>Waiters Needed
                 </div>
                 <div>
-                    <div class="green" style="background-color: green;"></div>djkjlkjdlad
+                    <div class="green" style="background-color: green;"></div>Enough Waiters
                 </div>
                 <div>
-                    <div class="yellow" style="background-color: orange;"></div>Yellow dsjdjs
+                    <div class="red" style="background-color: red;"></div>More Than Enough Waiters
                 </div>
             </div>
 
             <table>
                 <tr>
                     {{#each tableData}}
-                    <th>{{this.shift}}</th>
+                    <th style="background-color:{{this.color}};">{{this.shift}}</th>
                     <td>{{this.waiter}}</td>
                 </tr>
                 {{/each}}
