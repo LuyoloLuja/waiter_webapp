@@ -36,12 +36,12 @@
             border: 1px solid #293745;
         }
 
-        .colors {
+        .color {
             float: right;
             margin-bottom: 2em;
         }
 
-        .colors .red,
+        .color .red,
         .green,
         .yellow {
             width: 10px;
@@ -80,7 +80,7 @@
         }
 
         .yellow {
-            background-color: #FDCE4B;
+            background-color: yellow;
         }
     </style>
 </head>
@@ -90,9 +90,9 @@
         <div class="daysContent">
             <h1>Booked Shifts</h1>
             <br><br><br>
-            <div class="colors">
+            <div class="color">
                 <div>
-                    <div class="yellow" style="background-color: #FDCE4B;"></div>Waiters Needed
+                    <div class="yellow" style="background-color: orange;"></div>Waiters Needed
                 </div>
                 <div>
                     <div class="green" style="background-color: green;"></div>Enough Waiters
@@ -105,7 +105,7 @@
             <table>
                 <tr>
                     {{#each tableData}}
-                    <th style="background-color:{{this.color}};">{{this.shift}}</th>
+                    <th style="background-color: {{colors}};">{{this.shift}}</th>
                     <td>{{this.waiter}}</td>
                 </tr>
                 {{/each}}
