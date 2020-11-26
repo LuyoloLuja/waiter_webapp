@@ -84,24 +84,14 @@ module.exports = function WaiterApp(pool) {
         days.forEach(element => {
             // console.log(element.waiter.length);
             if (element.waiter.length < 3) {
-                return element.shift = 'yellow';
+                element.shift = 'yellow';
             } else if (element.waiter.length === 3) {
-                return element.shift = 'green';
+                element.shift = 'green';
             } else if (element.waiter.length > 3) {
-                return element.shift = 'red';
+                element.shift = 'red';
             }
-            // return days
         });
-        // console.log(days);
-        // return days;
-
-        // if (day.length < 3) {
-        //     return 'yellow';
-        // } else if (day.length > 3) {
-        //     return 'red';
-        // } else if (day.length === 3) {
-        //     return 'green';
-        // }
+        return days;
     }
 
     return {

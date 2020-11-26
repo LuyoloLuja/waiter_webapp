@@ -5,84 +5,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Shifts</title>
-    <style>
-        body,
-        html {
-            margin: 0;
-            padding: 0;
-            font-family: Arial, Helvetica, sans-serif;
-            color: #fff;
-            box-sizing: border-box;
-            height: 100vh;
-            font-size: 18px;
-        }
-
-        .fit {
-            background-color: #293745;
-            width: 70%;
-            margin: 0 auto;
-            height: 100%;
-        }
-
-        .fit h1 {
-            font-size: 56px;
-            font-weight: lighter;
-            text-align: center;
-        }
-
-        .daysContent {
-            width: 60%;
-            margin: 0em auto;
-            border: 1px solid #293745;
-        }
-
-        .color {
-            float: right;
-            margin-bottom: 2em;
-        }
-
-        .color .red,
-        .green,
-        .yellow {
-            width: 10px;
-            height: 10px;
-            background-color: #000;
-            display: inline-block;
-            border-radius: 50%;
-            margin-right: 5px;
-        }
-
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin: 0 auto;
-        }
-
-        tr,
-        th,
-        td {
-            border-bottom: 1px solid #fff;
-            padding: 10px;
-        }
-
-        th {
-            text-align: left;
-            border-right: 1px solid #fff;
-            width: 20%;
-        }
-
-        .red {
-            background-color: red;
-        }
-
-        .green {
-            background-color: green;
-        }
-
-        .yellow {
-            background-color: yellow;
-        }
-    </style>
 </head>
 
 <body>
@@ -105,7 +27,7 @@
             <table>
                 <tr>
                     {{#each tableData}}
-                    <th style="background-color: {{colors}};">{{this.shift}}</th>
+                    <th class="{{colors}}">{{this.shift}}</th>
                     <td>{{this.waiter}}</td>
                 </tr>
                 {{/each}}

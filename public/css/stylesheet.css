@@ -98,3 +98,68 @@ label input {
     padding: 5px 30px ;
     border-radius: 5px;
 }
+.fit {
+    background-color: #293745;
+    width: 70%;
+    margin: 0 auto;
+    height: 100%;
+}
+
+.fit h1 {
+    font-size: 56px;
+    font-weight: lighter;
+    text-align: center;
+}
+
+.daysContent {
+    width: 60%;
+    margin: 0em auto;
+    border: 1px solid #293745;
+}
+
+.color {
+    float: right;
+    margin-bottom: 2em;
+}
+
+.color .red,
+.green,
+.yellow {
+    width: 10px;
+    height: 10px;
+    background-color: #000;
+    display: inline-block;
+    border-radius: 50%;
+    margin-right: 5px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 0 auto;
+}
+
+tr,
+th,
+td {
+    border-bottom: 1px solid #fff;
+    padding: 10px;
+}
+
+th {
+    text-align: left;
+    border-right: 1px solid #fff;
+    width: 20%;
+}
+
+.red {
+    background-color: red;
+}
+
+.green {
+    background-color: green;
+}
+
+.yellow {
+    background-color: yellow;
+}
