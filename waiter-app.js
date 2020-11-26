@@ -35,7 +35,6 @@ module.exports = function WaiterApp(pool) {
 
     async function getDays() {
         let days = await pool.query('SELECT * FROM days_of_work');
-        // console.log(days.rows);
         return days.rows;
     }
 
@@ -69,7 +68,7 @@ module.exports = function WaiterApp(pool) {
         }
 
         for (const list of daysList) {
-            console.log(list);
+
             for (const data of waiterDays) {
 
                 if (list.work_day === data.day_working) {
@@ -79,7 +78,6 @@ module.exports = function WaiterApp(pool) {
         }
 
         daysList.forEach(element => {
-            // console.log(daysList);
             if (element.waiter.length > 0 && element.waiter.length < 3) {
                 element.shift = 'yellow';
             } else if (element.waiter.length === 3) {
@@ -92,23 +90,6 @@ module.exports = function WaiterApp(pool) {
         return daysList;
     }
 
-    // async function colors() {
-    //     var days = await groupWaitersByDay();
-
-    //     days.forEach(element => {
-    //         console.log(element.waiter);
-    //         if (element.waiter.length < 3) {
-    //             element.shift = 'yellow';
-    //         } else if (element.waiter.length === 3) {
-    //             element.shift = 'green';
-    //         } else if (element.waiter.length > 3) {
-    //             element.shift = 'red';
-    //         }
-    //     });
-    //     console.log(days);
-    //     return days;
-    // }
-
     return {
         addWaiterInfo,
         getDaysId,
@@ -117,6 +98,5 @@ module.exports = function WaiterApp(pool) {
         getName,
         joinTables,
         groupWaitersByDay,
-        // colors
     }
 }

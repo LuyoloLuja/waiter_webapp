@@ -50,7 +50,7 @@ app.get('/waiters/:username', async function (req, res) {
 app.post('/waiters/:username', async function (req, res) {
   let name = req.params.username;
   name = name.toUpperCase().charAt(0) + name.slice(1);
-  
+
   let days = req.body.day;
 
   var waiterDetails = await waiterAppInstance.addWaiterInfo(name, days);
@@ -69,18 +69,9 @@ app.post('/waiters/:username', async function (req, res) {
 })
 
 app.get('/days', async function (req, res) {
-  const tableData =  await waiterAppInstance.groupWaitersByDay();
-  console.log(tableData);
-  // let shifts = Object.keys(tableData)
+  const tableData = await waiterAppInstance.groupWaitersByDay();
 
-  // const colors = await waiterAppInstance.colors();
-
-  // console.log(colors);
-  
-  res.render('shifts', {
-    tableData
-    // colors
-  })
+  res.render('shifts', { tableData })
 })
 
 let PORT = process.env.PORT || 3032;
