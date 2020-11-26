@@ -60,30 +60,27 @@ module.exports = function WaiterApp(pool) {
 
         for (let i = 0; i < dayOfTheWeek.length; i++) {
             const eachDay = dayOfTheWeek[i];
+
             let waiterInfo = {
-                shift: eachDay.day_working,
+                work_day: eachDay.day_working,
                 waiter: []
             }
             daysList.push(waiterInfo);
         }
 
         for (const list of daysList) {
+            console.log(list);
             for (const data of waiterDays) {
 
-                if (list.shift === data.day_working) {
+                if (list.work_day === data.day_working) {
                     list.waiter.push(data.waiter_name);
                 }
             }
         }
-        return daysList;
-    }
 
-    async function colors() {
-        var days = await groupWaitersByDay();
-
-        days.forEach(element => {
-            // console.log(element.waiter.length);
-            if (element.waiter.length < 3) {
+        daysList.forEach(element => {
+            // console.log(daysList);
+            if (element.waiter.length > 0 && element.waiter.length < 3) {
                 element.shift = 'yellow';
             } else if (element.waiter.length === 3) {
                 element.shift = 'green';
@@ -91,8 +88,26 @@ module.exports = function WaiterApp(pool) {
                 element.shift = 'red';
             }
         });
-        return days;
+        
+        return daysList;
     }
+
+    // async function colors() {
+    //     var days = await groupWaitersByDay();
+
+    //     days.forEach(element => {
+    //         console.log(element.waiter);
+    //         if (element.waiter.length < 3) {
+    //             element.shift = 'yellow';
+    //         } else if (element.waiter.length === 3) {
+    //             element.shift = 'green';
+    //         } else if (element.waiter.length > 3) {
+    //             element.shift = 'red';
+    //         }
+    //     });
+    //     console.log(days);
+    //     return days;
+    // }
 
     return {
         addWaiterInfo,
@@ -102,6 +117,6 @@ module.exports = function WaiterApp(pool) {
         getName,
         joinTables,
         groupWaitersByDay,
-        colors
+        // colors
     }
 }

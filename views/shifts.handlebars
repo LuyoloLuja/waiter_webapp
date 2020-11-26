@@ -14,20 +14,20 @@
             <br><br><br>
             <div class="color">
                 <div>
-                    <div class="yellow" style="background-color: orange;"></div>Waiters Needed
+                    <div class="example" style="background-color: #ffa500;"></div>Waiters Needed
                 </div>
                 <div>
-                    <div class="green" style="background-color: green;"></div>Enough Waiters
+                    <div class="example" style="background-color: #008000;"></div>Enough Waiters
                 </div>
                 <div>
-                    <div class="red" style="background-color: red;"></div>More Than Enough Waiters
+                    <div class="example" style="background-color: #ff0000;"></div>More Than Enough Waiters
                 </div>
             </div>
 
             <table>
                 <tr>
                     {{#each tableData}}
-                    <th class="{{colors}}">{{this.shift}}</th>
+                    <th class="{{shift}}">{{this.work_day}}</th>
                     <td>{{this.waiter}}</td>
                 </tr>
                 {{/each}}

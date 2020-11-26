@@ -70,15 +70,16 @@ app.post('/waiters/:username', async function (req, res) {
 
 app.get('/days', async function (req, res) {
   const tableData =  await waiterAppInstance.groupWaitersByDay();
+  console.log(tableData);
   // let shifts = Object.keys(tableData)
 
-  const colors = await waiterAppInstance.colors();
+  // const colors = await waiterAppInstance.colors();
 
   // console.log(colors);
   
   res.render('shifts', {
-    tableData,
-    colors
+    tableData
+    // colors
   })
 })
 
