@@ -24,12 +24,12 @@ module.exports = function WaiterApp(pool) {
         }
 
         var namesId = await pool.query('SELECT id FROM waiter_names WHERE waiter_name = $1', [name]);
+        
         return namesId.rows[0]['id'];
     }
 
     async function getDaysId(days) {
         var daysId = await pool.query('SELECT id FROM days_of_work WHERE day_working = $1', [days]);
-
         return daysId.rows[0]['id'];
     }
 
@@ -38,10 +38,12 @@ module.exports = function WaiterApp(pool) {
         return days.rows;
     }
 
-    async function getName() {
-        let names = await pool.query('SELECT waiter_name FROM waiter_names');
-        return names.rows;
-    }
+    // async function getName() {
+    //     let names = await pool.query('SELECT waiter_name FROM waiter_names');
+
+    //     console.log(names);
+    //     return names.rows;
+    // }
 
     async function joinTables() {
         let tableData = await pool.query(`SELECT DISTINCT waiter_names.id AS waiter_id, waiter_name, working_days.id AS 
@@ -66,6 +68,7 @@ module.exports = function WaiterApp(pool) {
             }
             daysList.push(waiterInfo);
         }
+        console.log(daysList);
 
         for (const list of daysList) {
 
@@ -95,7 +98,7 @@ module.exports = function WaiterApp(pool) {
         getDaysId,
         getNameId,
         getDays,
-        getName,
+        // getName,
         joinTables,
         groupWaitersByDay,
     }
