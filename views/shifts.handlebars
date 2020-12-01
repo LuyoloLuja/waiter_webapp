@@ -51,6 +51,7 @@
                     <td>{{this.waiter}}</td>
                 </tr>
                 {{/each}}
+
                 <td colspan="2" style="padding: 10px;">
                     <form action="/reset" method="get">
                         <button
@@ -59,6 +60,11 @@
                     </form>
                 </td>
             </table>
+            {{#if messages.message}}
+            <div style="margin-top: 2em;" class="message">
+                {{messages.message}}
+            </div>
+            {{/if}}
 
         </div>
     </div>

@@ -74,6 +74,13 @@ app.get('/days', async function (req, res) {
   res.render('shifts', { tableData })
 })
 
+app.get('/reset', async function (req, res) {
+  await waiterAppInstance.reset();
+  req.flash('message', 'Successfuly resetted!');
+
+  res.render('shifts');
+})
+
 let PORT = process.env.PORT || 3032;
 
 app.listen(PORT, function () {

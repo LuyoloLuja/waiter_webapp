@@ -86,6 +86,10 @@ module.exports = function WaiterApp(pool) {
         return daysList;
     }
 
+    async function reset(){
+        await pool.query('DELETE FROM working_days');
+    }
+
     return {
         addWaiterInfo,
         getDaysId,
@@ -93,5 +97,6 @@ module.exports = function WaiterApp(pool) {
         getDays,
         joinTables,
         groupWaitersByDay,
+        reset
     }
 }
