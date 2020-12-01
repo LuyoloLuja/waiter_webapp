@@ -1,16 +1,18 @@
 module.exports = function WaiterApp(pool) {
 
     async function addWaiterInfo(name, days) {
+
+
         name = name.toUpperCase().charAt(0) + name.slice(1);
 
         if (name && days) {
             let namesId = await getNameId(name);
 
             for (const eachDay of days) {
-
                 let daysId = await getDaysId(eachDay);
-                await pool.query('INSERT INTO working_days (waiter_id, days_working) VALUES ($1, $2)', [namesId, daysId]);
+                console.log(daysId + 'dayId');
 
+                await pool.query('INSERT INTO working_days (waiter_id, days_working) VALUES ($1, $2)', [namesId, daysId]);
             }
         }
     }
@@ -30,6 +32,7 @@ module.exports = function WaiterApp(pool) {
 
     async function getDaysId(days) {
         var daysId = await pool.query('SELECT id FROM days_of_work WHERE day_working = $1', [days]);
+        console.log(daysId.rows[0]['id']+ " day Id");
         return daysId.rows[0]['id'];
     }
 
@@ -68,7 +71,6 @@ module.exports = function WaiterApp(pool) {
             }
             daysList.push(waiterInfo);
         }
-        console.log(daysList);
 
         for (const list of daysList) {
 
