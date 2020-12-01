@@ -51,7 +51,15 @@
                     <td>{{this.waiter}}</td>
                 </tr>
                 {{/each}}
+                <td colspan="2" style="padding: 10px;">
+                    <form action="/reset" method="get">
+                        <button
+                            style="padding: 10px; width: 60%; margin: 0 auto; display:block; background-color: #ff0000; color:#fff"
+                            type="submit">Reset</button>
+                    </form>
+                </td>
             </table>
+
         </div>
     </div>
 </body>

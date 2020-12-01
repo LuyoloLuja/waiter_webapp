@@ -19,7 +19,7 @@ body, html {
     margin-left: auto;
     margin-right: auto;
 }
-form {
+.container form {
     width: 80%;
     height: 100%;
     margin: 5em auto;
@@ -60,9 +60,8 @@ label input {
     border-bottom: 1px solid #fff;
     padding: 20px;
 }
-.container table button {
+button {
     width: 100%;
-    /* width: 65%; */
     padding: 10px;
     border: none;
     border-radius: 5px;
@@ -71,19 +70,7 @@ label input {
     color: #293745;
     cursor: pointer;
 }
-.container table button:hover {
-    border: 1px solid #fff;
-}
-.container table a {
-    text-decoration: none;
-    padding: 11px 2.5em;
-    border: none;
-    border-radius: 5px;
-    font-size: 16px;
-    background-color: #2F9ED0;
-    color: #293745;
-}
-.container table a:hover {
+button:hover {
     border: 1px solid #fff;
 }
 .container table input {
