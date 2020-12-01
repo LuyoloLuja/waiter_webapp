@@ -59,10 +59,65 @@ describe('The Waiter App Tests', function () {
   describe('The addWaiterInfo() and groupWaitersByDay() functions', async function () {
     it('Should return the names and days that were set', async function () {
       await waiterApp.addWaiterInfo('Luyolo', ['Monday']);
-      // await waiterApp.addWaiterInfo('Simthe', ['Tuesday', 'Friday']);
-      // await waiterApp.addWaiterInfo('Lilitha', ['Wednesday']);
-// needs work
-      assert.deepEqual(await waiterApp.groupWaitersByDay(), [{ work_day: ['Monday'], waiter: 1 }]);
+      await waiterApp.addWaiterInfo('Simthe', ['Tuesday', 'Friday']);
+      await waiterApp.addWaiterInfo('Lilitha', ['Wednesday']);
+
+      assert.deepStrictEqual(await waiterApp.groupWaitersByDay(), [
+        {shift: "yellow", waiter: ["Luyolo"], work_day: "Monday"},
+        {"shift": "yellow", waiter: ["Simthe"], work_day: "Tuesday"},
+        {"shift": "yellow", waiter: ["Lilitha"], work_day: "Wednesday"},
+        {waiter: [], work_day: "Thursday"},
+        {"shift": "yellow", waiter: ["Simthe"], work_day: "Friday"},
+        {waiter: [], work_day: "Saturday"},
+        {waiter: [], work_day: "Sunday"}
+      ]);
+    })
+
+    it('Should return red if day has more than 3 waiters available', async function(){
+      await waiterApp.addWaiterInfo('Luyolo', ['Monday']);
+      await waiterApp.addWaiterInfo('Simthe', ['Monday']);
+      await waiterApp.addWaiterInfo('Lilitha', ['Monday']);
+      await waiterApp.addWaiterInfo('Lumanyano', ['Monday']);
+
+      assert.deepStrictEqual(await waiterApp.groupWaitersByDay(), [
+        {shift: "red", waiter: ["Luyolo", "Simthe", "Lilitha", "Lumanyano"], work_day: "Monday"},
+        {waiter: [], work_day: "Tuesday"},
+        {waiter: [], work_day: "Wednesday"},
+        {waiter: [], work_day: "Thursday"},
+        {waiter: [], work_day: "Friday"},
+        {waiter: [], work_day: "Saturday"},
+        {waiter: [], work_day: "Sunday"}
+      ])
+    })
+
+    it('Should return green if day has 3 waiters available', async function(){
+      await waiterApp.addWaiterInfo('Luyolo', ['Monday']);
+      await waiterApp.addWaiterInfo('Simthe', ['Monday']);
+      await waiterApp.addWaiterInfo('Lilitha', ['Monday']);
+
+      assert.deepStrictEqual(await waiterApp.groupWaitersByDay(), [
+        {shift: "green", waiter: ["Luyolo", "Simthe", "Lilitha"], work_day: "Monday"},
+        {waiter: [], work_day: "Tuesday"},
+        {waiter: [], work_day: "Wednesday"},
+        {waiter: [], work_day: "Thursday"},
+        {waiter: [], work_day: "Friday"},
+        {waiter: [], work_day: "Saturday"},
+        {waiter: [], work_day: "Sunday"}
+      ])
+    })
+    it('Should return yellow if day has less than 3 waiters available', async function(){
+      await waiterApp.addWaiterInfo('Luyolo', ['Monday']);
+      await waiterApp.addWaiterInfo('Simthe', ['Monday']);
+
+      assert.deepStrictEqual(await waiterApp.groupWaitersByDay(), [
+        {shift: "yellow", waiter: ["Luyolo", "Simthe"], work_day: "Monday"},
+        {waiter: [], work_day: "Tuesday"},
+        {waiter: [], work_day: "Wednesday"},
+        {waiter: [], work_day: "Thursday"},
+        {waiter: [], work_day: "Friday"},
+        {waiter: [], work_day: "Saturday"},
+        {waiter: [], work_day: "Sunday"}
+      ])
     })
   })
 })

@@ -10,7 +10,6 @@ module.exports = function WaiterApp(pool) {
 
             for (const eachDay of days) {
                 let daysId = await getDaysId(eachDay);
-                console.log(daysId + 'dayId');
 
                 await pool.query('INSERT INTO working_days (waiter_id, days_working) VALUES ($1, $2)', [namesId, daysId]);
             }
@@ -32,7 +31,6 @@ module.exports = function WaiterApp(pool) {
 
     async function getDaysId(days) {
         var daysId = await pool.query('SELECT id FROM days_of_work WHERE day_working = $1', [days]);
-        console.log(daysId.rows[0]['id']+ " day Id");
         return daysId.rows[0]['id'];
     }
 
@@ -40,13 +38,6 @@ module.exports = function WaiterApp(pool) {
         let days = await pool.query('SELECT * FROM days_of_work');
         return days.rows;
     }
-
-    // async function getName() {
-    //     let names = await pool.query('SELECT waiter_name FROM waiter_names');
-
-    //     console.log(names);
-    //     return names.rows;
-    // }
 
     async function joinTables() {
         let tableData = await pool.query(`SELECT DISTINCT waiter_names.id AS waiter_id, waiter_name, working_days.id AS 
@@ -100,7 +91,6 @@ module.exports = function WaiterApp(pool) {
         getDaysId,
         getNameId,
         getDays,
-        // getName,
         joinTables,
         groupWaitersByDay,
     }
